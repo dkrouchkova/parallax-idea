@@ -1,35 +1,40 @@
 /*FONTS*/
-@import url(https://fonts.googleapis.com/css?family=Leckerli+One|Quattrocento+Sans);
+@import url(https://fonts.googleapis.com/css?family=Homemade+Apple|Quattrocento+Sans);
 /*VARIABLES*/
 /* demo styles
 --------------------------------------------- */
+*,
+*:before,
+*:after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body, html {
   overflow: hidden;
 }
 
-body {
-  font: 100% / 1.5 Arial;
+.clearfix:before,
+.clearfix:after {
+  content: " ";
+  /* 1 */
+  display: table;
+  /* 2 */
 }
 
-* {
-  margin: 0;
-  padding: 0;
+.clearfix:after {
+  clear: both;
 }
 
-.parallax {
-  font-size: 200%;
-}
-
-h1,
-h2,
-h3,
-h4 {
-  font-family: 'Leckerli One', cursive;
-  font-weight: lighter;
+h1 {
+  font-family: 'Homemade Apple', cursive;
+  font-size: 3em;
 }
 
 p {
   font-family: 'Quattrocento Sans', sans-serif;
+  font-size: 200%;
 }
 
 /* Parallax base styles
@@ -91,13 +96,32 @@ p {
 
 /* centre the content in the parallax layers */
 .stuff,
-.title {
+.title,
+.small {
   text-align: center;
   position: absolute;
   left: 50%;
   top: 50%;
   -webkit-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
+}
+
+.small {
+  font-size: 70%;
+  top: 95%;
+}
+
+.stack {
+  text-align: left;
+  position: absolute;
+  max-width: 500px;
+  left: 10%;
+  top: 30%;
+}
+
+.small {
+  font-size: 100%;
+  top: 95%;
 }
 
 .ideaimg {
@@ -107,6 +131,24 @@ p {
   top: 50%;
   -webkit-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
+}
+
+.lastfig {
+  position: absolute;
+  left: 50%;
+  top: 15%;
+}
+.lastfig img {
+  max-width: 650px;
+}
+
+.winner {
+  position: absolute;
+  left: 33%;
+  top: 30%;
+}
+.winner img {
+  max-width: 250px;
 }
 
 /* style the groups
@@ -240,7 +282,13 @@ p {
 }
 
 #group9 .parallax__layer--base {
-  background: #7a7a7a;
+  background: transparent url(..//img/clarity.png) 0 0 no-repeat;
+  background-size: cover;
+}
+
+#group9 .parallax__layer--fore {
+  z-index: 6;
+  color: #fffbd6;
 }
 
 /*the winning idea makes it big*/
@@ -250,15 +298,17 @@ p {
 }
 
 #group10 .parallax__layer--back {
-  background: #66cc66;
+  background: #031020;
+  color: #fffbd6;
 }
 
-/*REMOVE AND MOVE CONTENT TO GR10!!!! keep at it - it's a muscle*/
+/*keep at it - it's a muscle*/
 #group11 {
   z-index: 3;
   /* slide over group 8 */
 }
 
 #group11 .parallax__layer--base {
-  background: #7a7a7a;
+  background: #7bafb1;
+  color: #271923;
 }
