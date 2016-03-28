@@ -1,5 +1,4 @@
-/* demo styles
---------------------------------------------- */
+/* Universal Styles */
 *,
 *:before,
 *:after {
@@ -12,10 +11,6 @@ body, html {
   overflow: hidden;
 }
 
-// body {
-//   // font: 100% / 1.5 Arial;
-// }
-
 .clearfix:before,
 .clearfix:after {
   content: " "; /* 1 */
@@ -26,13 +21,8 @@ body, html {
   clear: both;
 }
 
-.parallax {
-  // font-size: 200%;
-}
-
 h1 {
   font-family: 'Homemade Apple', cursive;
-  // font-weight: lighter;
   font-size: 3em;
 }
 
@@ -41,81 +31,83 @@ p {
   font-size: 200%;
 }
 
-/* Parallax base styles
---------------------------------------------- */
-
+/* Parallax base styles */
 .parallax {
-height: 500px; /* fallback for older browsers */
-height: 100vh;
-overflow-x: hidden;
-overflow-y: auto;
-perspective: 300px;
+  perspective: 300px;
+  height: 500px; /* fallback for older browsers */
+  height: 100vh;
+  overflow-x: hidden;
+  overflow-y: auto;
+  transform-style: preserve-3d;
+}
+
+.parallax__group:before {
+  content: " ";
+  position: absolute;
+  top: 0; /*pins 4 corners to the 4 corners of the browser*/
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: 50% 50% / cover; /*works better than background cover*/
 }
 
 .parallax__group {
-position: relative;
-height: 500px; /* fallback for older browsers */
-height: 100vh;
-transform-style: preserve-3d;
+  position: relative;
+  padding: 25vh 10%; /*25 vertical height, 10% left and right*/
+  min-height: 100vh;
+  width: 100vw; /*vertical width*/
+  transform-style: inherit;
+  background: 50% 50% / cover; 
 }
 
 .parallax__layer {
-position: absolute;
-top: 0;
-left: 0;
-right: 0;
-bottom: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
 }
 
 .parallax__layer--fore {
--webkit-transform: translateZ(90px) scale(.7);
-transform: translateZ(90px) scale(.7);
-z-index: 1;
+  transform: translateZ(90px) scale(.7);
+  z-index: 5;
 }
 
 .parallax__layer--base {
--webkit-transform: translateZ(0);
-transform: translateZ(0);
-z-index: 4;
+  transform: translateZ(0);
+  z-index: 4;
 }
 
 .parallax__layer--back {
--webkit-transform: translateZ(-300px) scale(2);
-transform: translateZ(-300px) scale(2);
-z-index: 3;
+  transform: translateZ(-300px) scale(2);
+  z-index: 3;
 }
 
 .parallax__layer--deep {
--webkit-transform: translateZ(-600px) scale(3);
-transform: translateZ(-600px) scale(3);
-z-index: 2;
+  transform: translateZ(-600px) scale(3);
+  z-index: 2;
 }
 
 .parallax__layer--deeper {
--webkit-transform: translateZ(-900px) scale(4);
-transform: translateZ(-900px) scale(4);
-z-index: 5;
+  transform: translateZ(-900px) scale(4);
+  z-index: 1;
 }
 
-/* centre the content in the parallax layers */
-// .title {
-// text-align: center;
-// position: absolute;
-// left: 50%;
-// top: 50%;
-// -webkit-transform: translate(-50%, -50%);
-// transform: translate(-50%, -50%);
-// }
-
+/* center the content in the parallax layers */
 .stuff,
 .title,
-.small {
+.small,
+.conclude {
   text-align: center;
   position: absolute;
   left: 50%;
   top: 50%;
-  -webkit-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
+}
+
+.conclude {
+  font-family: 'Bubblegum Sans', sans-serif;
+  font-size: 250%;
 }
 
 .small {
@@ -128,7 +120,7 @@ z-index: 5;
   position: absolute;
   max-width: 500px;
   left: 10%;
-  top: 30%
+  top: 35%
 }
 
 .small {
@@ -137,19 +129,15 @@ z-index: 5;
 }
 
 .ideaimg {
-  // margin-left: auto;
-  // margin-right: auto;
   text-align: center;
   position: absolute;
   left: 50%;
   top: 50%;
-  -webkit-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
 }
 
 .lastfig {
   position: absolute;
-  // float: right;
   left: 50%;
   top: 15%;
     img {
@@ -161,27 +149,20 @@ z-index: 5;
   position: absolute; 
   left: 33%;
   top: 30%;
-  // float: right;
     img {
       max-width: 250px;
     }
 }
 
-/* style the groups
---------------------------------------------- */
+/* ------------group styles-------------- */
+
 /*intro*/
-#group1 {
-  z-index: 5; /* slide over group 2 */
-}
 #group1 .parallax__layer--base {
   background: $main-plum;
   color: $yellow;
 }
 
 /*first idea*/
-#group2 {
-  z-index: 3; /* slide under groups 1 and 3 */
-}
 #group2 .parallax__layer--back {
   background: $dark-blue;
     img {
@@ -190,22 +171,12 @@ z-index: 5;
 }
 
 /*first idea is hardest*/
-#group3 {
-  // height: 70vh; 
-  z-index: 4; /* slide over group 2 and 4 */
-}
 #group3 .parallax__layer--base {
   background: $yellow;
   color: $main-plum;
 }
 
 /*but then they flow (1st)*/
-#group4 {
-  // height: 200vh;
-  // transform: scale(.7);
-  height: 100vh;
-  z-index: -2; /* slide under group 3 and 5 */
-}
 #group4 .parallax__layer--back {
   background: transparent url(..//img/falling2x1.png) 0 0 no-repeat;
   background-size: cover;
@@ -220,24 +191,13 @@ z-index: 5;
 
 
 /*gotta pick the best and think even more*/
-#group5 {
-  height: 100vh; 
-  z-index: 3; /* slide over group 2 and 4 */
-}
 #group5 .parallax__layer--base {
   background: $main-plum;
   color: $cream;
-  transform: scale(1.2);
 }
 
 /*even more ideas come (2nd)*/
-#group6 {
-  height: 100vh; 
-  // transform: scale(.8);
-  // z-index: -3; /* slide under group 3 and 5 */
-}
 #group6 .parallax__layer--base {
-  z-index: 4;
   background: transparent url(..//img/falling2x1.png) 0 0 no-repeat;
   background-size: cover;
 }
@@ -250,32 +210,16 @@ z-index: 5;
   background-size: cover;
 }
 #group6 .parallax__layer--deeper {
-  // height: 100vh;
   background: $dark-blue;
 }
 
 /*get some shut eye*/
-#group7 {
-  z-index: 4; /* slide over group 4 and 6 */
-}
 #group7 .parallax__layer--base {
   background: $main-plum;
   color: $yellow;
-  // background: transparent url(..//img/eyes.png) 0 0 no-repeat;
-  // background-height: 100vh;
-  // z-index: 5;
 }
-// #group7 .parallax__layer--fore {
-//   // background: $main-plum 50%;
-//   z-index: 1;
 
-//   // max-height: 30vh;
-// }
-
-/*morning/sunrise*/
-#group8 {
-z-index: 3; /* slide under group 5 and 7 */
-}
+/*sunset*/
 #group8 .parallax__layer--back {
   background: $light-blue;
     img {
@@ -289,39 +233,29 @@ z-index: 3; /* slide under group 5 and 7 */
 }
 
 /*pick the winners*/
-#group9 {
-  z-index: 3; /* slide over group 6 and 8 */
-}
 #group9 .parallax__layer--base {
   background: transparent url(..//img/clarity.png) 0 0 no-repeat;
   background-size: cover;
 }
 #group9 .parallax__layer--fore {
-  z-index: 6;
   color: $cream;
 }
 
 /*the winning idea makes it big*/
-#group10 {
-  z-index: 2; /* slide under group 7 */
-}
 #group10 .parallax__layer--back {
+  color: $cream; 
+}
+#group10 .parallax__layer--deep {
   background: $dark-blue;
-  color: $cream;
-    img {
-      // max-width: 500px;
-      // text-align: right;
-      // position: absolute;
-      // right: 10%;
-      // top: 50%;
-        }
 }
 
 /*keep at it - it's a muscle*/
-#group11 {
-  z-index: 3; /* slide over group 8 */
+#group11 .parallax__layer--fore {
+  color: $main-plum;
 }
 #group11 .parallax__layer--base {
   background: $light-blue;
-  color: $main-plum;
+  @include background-image(radial-gradient(45px 45px, $cream 50px, $yellow 800px));
 }
+
+/*adapted from: http://keithclark.co.uk/articles/pure-css-parallax-websites/*/
